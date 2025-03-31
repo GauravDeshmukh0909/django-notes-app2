@@ -14,15 +14,14 @@ pipeline{
         stage("Code"){
             steps {
                 script {
-                    clone("https://github.com/GauravDeshmukh0909/django-notes-app2.git", "main") // ✅ Fixed function call
+                    clone("https://github.com/GauravDeshmukh0909/django-notes-app2.git", "main") 
                 }
             }
         }
         stage("Build"){
             steps{
                 echo "this is Building stage"
-                bat "docker compose up -d"
-                
+                bat "docker compose up -d"   
             }
         }
         stage("Test"){
@@ -32,15 +31,10 @@ pipeline{
         }
         stage("Push to docker hub"){
             steps{
-                
-                
                 echo "Pushing the image to Docker Hub..."
                 script{
                     docker_push("dockerHubCred","notes-app")
                 }
-                
-                
-                
                 
             }
         }
